@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Terminal Portal | Arıza Takip Portalı</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app">
+      <header class="app__header">
+        <div>
+          <p class="app__eyebrow">Terminal Portal</p>
+          <h1>Arıza Takip Portalı</h1>
+          <p class="app__subtitle">Terminal operasyonlarınız için hızlı arıza kaydı ve takip paneli.</p>
+        </div>
+        <button class="btn btn--ghost" type="button">Raporu Dışa Aktar</button>
+      </header>
+
+      <section class="summary">
+        <article class="summary__card">
+          <p class="summary__label">Açık Arıza</p>
+          <p class="summary__value">18</p>
+          <p class="summary__meta">%12 artış (son 7 gün)</p>
+        </article>
+        <article class="summary__card">
+          <p class="summary__label">Kritik Öncelik</p>
+          <p class="summary__value">5</p>
+          <p class="summary__meta">3 tanesi saha desteği bekliyor</p>
+        </article>
+        <article class="summary__card">
+          <p class="summary__label">Ortalama Müdahale</p>
+          <p class="summary__value">1s 42dk</p>
+          <p class="summary__meta">Hedef: 2s altında</p>
+        </article>
+      </section>
+
+      <main class="content">
+        <section class="panel">
+          <div class="panel__header">
+            <div>
+              <h2>Yeni Arıza Kaydı</h2>
+              <p class="panel__subtitle">Saha ekiplerinden gelen kayıtları hızlıca ekleyin.</p>
+            </div>
+            <span class="panel__badge">Canlı</span>
+          </div>
+          <form class="form">
+            <label class="form__field">
+              <span class="form__label">Lokasyon</span>
+              <input type="text" placeholder="Terminal A - Hat 3" />
+            </label>
+            <label class="form__field">
+              <span class="form__label">Kategori</span>
+              <select>
+                <option>Elektrik</option>
+                <option>Mekanik</option>
+                <option>Yazılım</option>
+                <option>Güvenlik</option>
+              </select>
+            </label>
+            <label class="form__field">
+              <span class="form__label">Öncelik</span>
+              <select>
+                <option>Kritik</option>
+                <option>Yüksek</option>
+                <option>Orta</option>
+                <option>Düşük</option>
+              </select>
+            </label>
+            <label class="form__field form__field--full">
+              <span class="form__label">Özet</span>
+              <textarea rows="3" placeholder="Arızayı kısaca tarif edin..."></textarea>
+            </label>
+            <div class="form__actions">
+              <button class="btn" type="button">Kaydı Oluştur</button>
+              <button class="btn btn--ghost" type="reset">Temizle</button>
+            </div>
+          </form>
+        </section>
+
+        <section class="panel">
+          <div class="panel__header">
+            <div>
+              <h2>Aktif Arıza Listesi</h2>
+              <p class="panel__subtitle">Saha, bakım ve çağrı merkezi ekiplerinin eş zamanlı görünümü.</p>
+            </div>
+            <div class="filters">
+              <button class="chip chip--active" type="button">Tümü</button>
+              <button class="chip" type="button">Kritik</button>
+              <button class="chip" type="button">Beklemede</button>
+            </div>
+          </div>
+          <div class="table">
+            <div class="table__row table__row--head">
+              <span>Kod</span>
+              <span>Lokasyon</span>
+              <span>Durum</span>
+              <span>Atanan</span>
+              <span>Güncelleme</span>
+            </div>
+            <div class="table__row">
+              <span class="tag">#TRM-204</span>
+              <span>Terminal B - Konveyör 7</span>
+              <span class="status status--critical">Kritik</span>
+              <span>Bakım Ekibi 2</span>
+              <span>5 dk önce</span>
+            </div>
+            <div class="table__row">
+              <span class="tag">#TRM-198</span>
+              <span>Terminal A - Enerji Odası</span>
+              <span class="status status--high">Yüksek</span>
+              <span>Elektrik Ekibi</span>
+              <span>18 dk önce</span>
+            </div>
+            <div class="table__row">
+              <span class="tag">#TRM-173</span>
+              <span>Terminal C - Güvenlik Kapısı</span>
+              <span class="status status--medium">Orta</span>
+              <span>Saha Destek</span>
+              <span>32 dk önce</span>
+            </div>
+            <div class="table__row">
+              <span class="tag">#TRM-159</span>
+              <span>Terminal A - Yazılım Kontrol</span>
+              <span class="status status--low">Düşük</span>
+              <span>BT Ekibi</span>
+              <span>1 saat önce</span>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+    <script src="app.js"></script>
+  </body>
+</html>
