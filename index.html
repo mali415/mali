@@ -3,132 +3,401 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Terminal Portal | Arıza Takip Portalı</title>
+    <title>Terminal Portal | Arıza, Bakım ve Stok Yönetimi</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <div class="app">
-      <header class="app__header">
-        <div>
-          <p class="app__eyebrow">Terminal Portal</p>
-          <h1>Arıza Takip Portalı</h1>
-          <p class="app__subtitle">Terminal operasyonlarınız için hızlı arıza kaydı ve takip paneli.</p>
+    <div class="layout">
+      <aside class="sidebar">
+        <div class="brand">
+          <span class="brand__logo">TP</span>
+          <div>
+            <p class="brand__name">Terminal Portal</p>
+            <p class="brand__tag">Operasyon Kontrol Merkezi</p>
+          </div>
         </div>
-        <button class="btn btn--ghost" type="button">Raporu Dışa Aktar</button>
-      </header>
+        <nav class="nav">
+          <button class="nav__item nav__item--active" data-tab="overview">Genel Bakış</button>
+          <button class="nav__item" data-tab="faults">Arıza Takip</button>
+          <button class="nav__item" data-tab="maintenance">Bakım Takip</button>
+          <button class="nav__item" data-tab="inventory">Depo &amp; Stok</button>
+          <button class="nav__item" data-tab="equipment">Makine &amp; Ekipman</button>
+        </nav>
+        <div class="sidebar__footer">
+          <p>Son Güncelleme</p>
+          <strong>Bugün 10:42</strong>
+        </div>
+      </aside>
 
-      <section class="summary">
-        <article class="summary__card">
-          <p class="summary__label">Açık Arıza</p>
-          <p class="summary__value">18</p>
-          <p class="summary__meta">%12 artış (son 7 gün)</p>
-        </article>
-        <article class="summary__card">
-          <p class="summary__label">Kritik Öncelik</p>
-          <p class="summary__value">5</p>
-          <p class="summary__meta">3 tanesi saha desteği bekliyor</p>
-        </article>
-        <article class="summary__card">
-          <p class="summary__label">Ortalama Müdahale</p>
-          <p class="summary__value">1s 42dk</p>
-          <p class="summary__meta">Hedef: 2s altında</p>
-        </article>
-      </section>
-
-      <main class="content">
-        <section class="panel">
-          <div class="panel__header">
-            <div>
-              <h2>Yeni Arıza Kaydı</h2>
-              <p class="panel__subtitle">Saha ekiplerinden gelen kayıtları hızlıca ekleyin.</p>
-            </div>
-            <span class="panel__badge">Canlı</span>
+      <div class="main">
+        <header class="header">
+          <div>
+            <p class="header__eyebrow">Terminal Portal</p>
+            <h1>Arıza, Bakım ve Stok Yönetimi</h1>
+            <p class="header__subtitle">
+              Saha arızaları, planlı bakımlar, stok hareketleri ve ekipman belgeleri tek bir panelde.
+            </p>
           </div>
-          <form class="form">
-            <label class="form__field">
-              <span class="form__label">Lokasyon</span>
-              <input type="text" placeholder="Terminal A - Hat 3" />
-            </label>
-            <label class="form__field">
-              <span class="form__label">Kategori</span>
-              <select>
-                <option>Elektrik</option>
-                <option>Mekanik</option>
-                <option>Yazılım</option>
-                <option>Güvenlik</option>
-              </select>
-            </label>
-            <label class="form__field">
-              <span class="form__label">Öncelik</span>
-              <select>
-                <option>Kritik</option>
-                <option>Yüksek</option>
-                <option>Orta</option>
-                <option>Düşük</option>
-              </select>
-            </label>
-            <label class="form__field form__field--full">
-              <span class="form__label">Özet</span>
-              <textarea rows="3" placeholder="Arızayı kısaca tarif edin..."></textarea>
-            </label>
-            <div class="form__actions">
-              <button class="btn" type="button">Kaydı Oluştur</button>
-              <button class="btn btn--ghost" type="reset">Temizle</button>
-            </div>
-          </form>
+          <div class="header__actions">
+            <button class="btn btn--ghost" type="button">Raporu Dışa Aktar</button>
+            <button class="btn" type="button">Yeni Kayıt</button>
+          </div>
+        </header>
+
+        <section class="kpi-grid" data-tab-panel="overview">
+          <article class="kpi-card">
+            <p class="kpi-card__label">Açık Arıza</p>
+            <h2>18</h2>
+            <p class="kpi-card__meta">%12 artış, son 7 gün</p>
+          </article>
+          <article class="kpi-card">
+            <p class="kpi-card__label">Bekleyen Bakım</p>
+            <h2>9</h2>
+            <p class="kpi-card__meta">3 kritik bakım gecikmede</p>
+          </article>
+          <article class="kpi-card">
+            <p class="kpi-card__label">Stokta Kritik Kalem</p>
+            <h2>6</h2>
+            <p class="kpi-card__meta">2 kalem minimum seviyede</p>
+          </article>
+          <article class="kpi-card">
+            <p class="kpi-card__label">Ortalama Müdahale</p>
+            <h2>1s 42dk</h2>
+            <p class="kpi-card__meta">Hedef: 2 saat</p>
+          </article>
         </section>
 
-        <section class="panel">
-          <div class="panel__header">
-            <div>
-              <h2>Aktif Arıza Listesi</h2>
-              <p class="panel__subtitle">Saha, bakım ve çağrı merkezi ekiplerinin eş zamanlı görünümü.</p>
+        <section class="dashboard" data-tab-panel="overview">
+          <article class="panel">
+            <div class="panel__header">
+              <div>
+                <h3>Arıza Durum Özeti</h3>
+                <p class="panel__subtitle">Sahadaki aktif arıza akışı.</p>
+              </div>
+              <div class="chip-group">
+                <button class="chip chip--active" type="button">Tümü</button>
+                <button class="chip" type="button">Başlatıldı</button>
+                <button class="chip" type="button">Beklemede</button>
+                <button class="chip" type="button">Biten</button>
+              </div>
             </div>
-            <div class="filters">
-              <button class="chip chip--active" type="button">Tümü</button>
-              <button class="chip" type="button">Kritik</button>
-              <button class="chip" type="button">Beklemede</button>
+            <div class="table">
+              <div class="table__row table__row--head">
+                <span>Kod</span>
+                <span>Lokasyon</span>
+                <span>Durum</span>
+                <span>Atanan</span>
+                <span>Son Güncelleme</span>
+              </div>
+              <div class="table__row">
+                <span class="tag">#ARZ-204</span>
+                <span>Terminal B - Konveyör 7</span>
+                <span class="status status--critical">Başlatıldı</span>
+                <span>Bakım Ekibi 2</span>
+                <span>5 dk önce</span>
+              </div>
+              <div class="table__row">
+                <span class="tag">#ARZ-198</span>
+                <span>Terminal A - Enerji Odası</span>
+                <span class="status status--high">Beklemede</span>
+                <span>Elektrik Ekibi</span>
+                <span>18 dk önce</span>
+              </div>
+              <div class="table__row">
+                <span class="tag">#ARZ-173</span>
+                <span>Terminal C - Güvenlik Kapısı</span>
+                <span class="status status--medium">Biten</span>
+                <span>Saha Destek</span>
+                <span>32 dk önce</span>
+              </div>
             </div>
-          </div>
-          <div class="table">
-            <div class="table__row table__row--head">
-              <span>Kod</span>
-              <span>Lokasyon</span>
-              <span>Durum</span>
-              <span>Atanan</span>
-              <span>Güncelleme</span>
+          </article>
+
+          <article class="panel">
+            <div class="panel__header">
+              <div>
+                <h3>Stok Durumu</h3>
+                <p class="panel__subtitle">Arıza ve bakım sonrası otomatik düşümle güncellenen stok.</p>
+              </div>
+              <button class="btn btn--ghost" type="button">Stok Tanımı</button>
             </div>
-            <div class="table__row">
-              <span class="tag">#TRM-204</span>
-              <span>Terminal B - Konveyör 7</span>
-              <span class="status status--critical">Kritik</span>
-              <span>Bakım Ekibi 2</span>
-              <span>5 dk önce</span>
+            <div class="list">
+              <div class="list__item">
+                <div>
+                  <p class="list__title">Motor Sensörü</p>
+                  <p class="list__meta">Depo A - Raf 3</p>
+                </div>
+                <div class="list__badge list__badge--danger">Kritik</div>
+                <strong>4 adet</strong>
+              </div>
+              <div class="list__item">
+                <div>
+                  <p class="list__title">PLC Modülü</p>
+                  <p class="list__meta">Depo B - Raf 1</p>
+                </div>
+                <div class="list__badge list__badge--warning">Düşük</div>
+                <strong>9 adet</strong>
+              </div>
+              <div class="list__item">
+                <div>
+                  <p class="list__title">Hidrolik Hortum</p>
+                  <p class="list__meta">Depo A - Raf 7</p>
+                </div>
+                <div class="list__badge">Normal</div>
+                <strong>21 adet</strong>
+              </div>
             </div>
-            <div class="table__row">
-              <span class="tag">#TRM-198</span>
-              <span>Terminal A - Enerji Odası</span>
-              <span class="status status--high">Yüksek</span>
-              <span>Elektrik Ekibi</span>
-              <span>18 dk önce</span>
-            </div>
-            <div class="table__row">
-              <span class="tag">#TRM-173</span>
-              <span>Terminal C - Güvenlik Kapısı</span>
-              <span class="status status--medium">Orta</span>
-              <span>Saha Destek</span>
-              <span>32 dk önce</span>
-            </div>
-            <div class="table__row">
-              <span class="tag">#TRM-159</span>
-              <span>Terminal A - Yazılım Kontrol</span>
-              <span class="status status--low">Düşük</span>
-              <span>BT Ekibi</span>
-              <span>1 saat önce</span>
-            </div>
-          </div>
+          </article>
         </section>
-      </main>
+
+        <section class="dashboard dashboard--single" data-tab-panel="faults">
+          <article class="panel">
+            <div class="panel__header">
+              <div>
+                <h3>Arıza Kayıtları</h3>
+                <p class="panel__subtitle">Başlatılan, bekleyen ve tamamlanan arızalar.</p>
+              </div>
+              <div class="chip-group">
+                <button class="chip chip--active" type="button">Tümü</button>
+                <button class="chip" type="button">Başlatıldı</button>
+                <button class="chip" type="button">Beklemede</button>
+                <button class="chip" type="button">Biten</button>
+              </div>
+            </div>
+            <div class="table">
+              <div class="table__row table__row--head">
+                <span>Kod</span>
+                <span>Lokasyon</span>
+                <span>Etki</span>
+                <span>Stok Düşüm</span>
+                <span>Planlanan</span>
+              </div>
+              <div class="table__row">
+                <span class="tag">#ARZ-221</span>
+                <span>Terminal A - Hat 3</span>
+                <span class="status status--critical">Kritik</span>
+                <span>5 kalem düşüldü</span>
+                <span>Bugün 11:30</span>
+              </div>
+              <div class="table__row">
+                <span class="tag">#ARZ-214</span>
+                <span>Terminal B - Paketleme</span>
+                <span class="status status--high">Yüksek</span>
+                <span>2 kalem düşüldü</span>
+                <span>Bugün 14:00</span>
+              </div>
+              <div class="table__row">
+                <span class="tag">#ARZ-207</span>
+                <span>Terminal C - Güvenlik Kapısı</span>
+                <span class="status status--medium">Orta</span>
+                <span>Stok bekliyor</span>
+                <span>Yarın 09:00</span>
+              </div>
+            </div>
+          </article>
+        </section>
+
+        <section class="dashboard dashboard--single" data-tab-panel="maintenance">
+          <article class="panel">
+            <div class="panel__header">
+              <div>
+                <h3>Bakım Takvim &amp; İş Emirleri</h3>
+                <p class="panel__subtitle">Planlı bakım işleri ve parça tüketimi.</p>
+              </div>
+              <button class="btn btn--ghost" type="button">Yeni Bakım Planı</button>
+            </div>
+            <div class="table">
+              <div class="table__row table__row--head">
+                <span>Bakım No</span>
+                <span>Ekipman</span>
+                <span>Durum</span>
+                <span>Stok Düşüm</span>
+                <span>Tarih</span>
+              </div>
+              <div class="table__row">
+                <span class="tag">#BKM-094</span>
+                <span>Konveyör Motoru 7</span>
+                <span class="status status--high">Beklemede</span>
+                <span>3 kalem düşüldü</span>
+                <span>Bugün 16:00</span>
+              </div>
+              <div class="table__row">
+                <span class="tag">#BKM-092</span>
+                <span>UPS Ünitesi 2</span>
+                <span class="status status--medium">Başlatıldı</span>
+                <span>1 kalem düşüldü</span>
+                <span>Bugün 13:30</span>
+              </div>
+              <div class="table__row">
+                <span class="tag">#BKM-087</span>
+                <span>Turnike Sistemi</span>
+                <span class="status status--low">Biten</span>
+                <span>0 kalem</span>
+                <span>Dün 15:00</span>
+              </div>
+            </div>
+          </article>
+        </section>
+
+        <section class="dashboard" data-tab-panel="inventory">
+          <article class="panel">
+            <div class="panel__header">
+              <div>
+                <h3>Depo Stokları</h3>
+                <p class="panel__subtitle">Kalan stok, kritik seviye ve tahmini tükenme.</p>
+              </div>
+              <button class="btn btn--ghost" type="button">Malzeme Hareketi</button>
+            </div>
+            <div class="table">
+              <div class="table__row table__row--head">
+                <span>Malzeme</span>
+                <span>Stok</span>
+                <span>Depo</span>
+                <span>Son Kullanım</span>
+                <span>Durum</span>
+              </div>
+              <div class="table__row">
+                <span class="tag">PLC Modülü</span>
+                <span>9 adet</span>
+                <span>Depo B</span>
+                <span>#ARZ-214</span>
+                <span class="status status--high">Düşük</span>
+              </div>
+              <div class="table__row">
+                <span class="tag">Motor Sensörü</span>
+                <span>4 adet</span>
+                <span>Depo A</span>
+                <span>#BKM-094</span>
+                <span class="status status--critical">Kritik</span>
+              </div>
+              <div class="table__row">
+                <span class="tag">Güç Kaynağı</span>
+                <span>18 adet</span>
+                <span>Depo C</span>
+                <span>#ARZ-207</span>
+                <span class="status status--low">Normal</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="panel">
+            <div class="panel__header">
+              <div>
+                <h3>Malzeme Hareketleri</h3>
+                <p class="panel__subtitle">Nereden geldi, ne için kullanıldı, ne zaman çıktı?</p>
+              </div>
+              <button class="btn btn--ghost" type="button">Raporla</button>
+            </div>
+            <div class="timeline">
+              <div class="timeline__item">
+                <div class="timeline__dot"></div>
+                <div>
+                  <p class="timeline__title">Motor Sensörü - 4 adet çıktı</p>
+                  <p class="timeline__meta">Terminal B / #ARZ-204 • 09:12</p>
+                  <p class="timeline__desc">Bakım Ekibi 2 tarafından arıza giderimi için kullanıldı.</p>
+                </div>
+              </div>
+              <div class="timeline__item">
+                <div class="timeline__dot"></div>
+                <div>
+                  <p class="timeline__title">PLC Modülü - 6 adet giriş</p>
+                  <p class="timeline__meta">Tedarikçi: TeknoLojistik • 08:30</p>
+                  <p class="timeline__desc">Planlı bakım stoğu için depo B'ye alındı.</p>
+                </div>
+              </div>
+              <div class="timeline__item">
+                <div class="timeline__dot"></div>
+                <div>
+                  <p class="timeline__title">Hidrolik Hortum - 2 adet çıktı</p>
+                  <p class="timeline__meta">Terminal A / #BKM-092 • Dün 17:40</p>
+                  <p class="timeline__desc">Bakım planı tamamlandı, otomatik stok düşümü yapıldı.</p>
+                </div>
+              </div>
+            </div>
+          </article>
+        </section>
+
+        <section class="dashboard" data-tab-panel="equipment">
+          <article class="panel">
+            <div class="panel__header">
+              <div>
+                <h3>Makine &amp; Ekipman Envanteri</h3>
+                <p class="panel__subtitle">Özellikler, belgeler ve takip numaraları.</p>
+              </div>
+              <button class="btn btn--ghost" type="button">Yeni Ekipman</button>
+            </div>
+            <div class="table">
+              <div class="table__row table__row--head">
+                <span>Ekipman</span>
+                <span>Seri No</span>
+                <span>Konum</span>
+                <span>Bakım Durumu</span>
+                <span>Belgeler</span>
+              </div>
+              <div class="table__row">
+                <span class="tag">Konveyör Motoru 7</span>
+                <span>KM-7-4401</span>
+                <span>Terminal B</span>
+                <span class="status status--medium">Planlı</span>
+                <span>Garanti, CE, Bakım PDF</span>
+              </div>
+              <div class="table__row">
+                <span class="tag">UPS Ünitesi 2</span>
+                <span>UPS-2-1993</span>
+                <span>Terminal A</span>
+                <span class="status status--high">Beklemede</span>
+                <span>Servis Logu, Şema</span>
+              </div>
+              <div class="table__row">
+                <span class="tag">Turnike Sistemi</span>
+                <span>TRN-5-782</span>
+                <span>Terminal C</span>
+                <span class="status status--low">Aktif</span>
+                <span>Kılavuz, Güvenlik</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="panel">
+            <div class="panel__header">
+              <div>
+                <h3>Ekipman Detayları</h3>
+                <p class="panel__subtitle">Özellikler, bağlı arızalar ve bakım geçmişi.</p>
+              </div>
+              <button class="btn btn--ghost" type="button">Detay Gör</button>
+            </div>
+            <div class="details">
+              <div>
+                <p class="details__label">Seçili Ekipman</p>
+                <h4>Konveyör Motoru 7</h4>
+              </div>
+              <div class="details__grid">
+                <div>
+                  <p class="details__label">Kapasite</p>
+                  <p>12 ton/saat</p>
+                </div>
+                <div>
+                  <p class="details__label">Enerji Tüketimi</p>
+                  <p>48 kWh</p>
+                </div>
+                <div>
+                  <p class="details__label">Son Bakım</p>
+                  <p>12 Ocak 2024</p>
+                </div>
+                <div>
+                  <p class="details__label">Bağlı Arıza</p>
+                  <p>#ARZ-204</p>
+                </div>
+              </div>
+              <div class="details__docs">
+                <span class="doc">Garanti Belgesi</span>
+                <span class="doc">Elektrik Şeması</span>
+                <span class="doc">Bakım Talimatı</span>
+              </div>
+            </div>
+          </article>
+        </section>
+      </div>
     </div>
     <script src="app.js"></script>
   </body>
